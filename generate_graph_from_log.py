@@ -53,20 +53,18 @@ def parse_log(logtext):
 def main():
     parser = ArgumentParser()
     parser.add_argument('--output', '-o', action='store', type=str, help='output filename')
-    parser.add_argument('--input', '-i', action='store', type=str, help='input filename')
-    parser.add_argument('--clipboard', action='store_true', help='read log from clipboard')
+    parser.add_argument('file', nargs='?', action='store', type=str, help='input filename')
     args = parser.parse_args()
 
-    if args.clipboard:
-        p = Popen(['pbpaste'], stdout=PIPE, stderr=PIPE)
-        out, _err = p.communicate()
-        log = out.decode('utf-8') # bytes -> str
-    elif args.input:
-        with open(args.input) as f:
+    if args.file:
+        with open(args.file) as f:
             log = f.read()
     else:
-        print("Input source is not specified. Use --input or --clipboard.")
-        exit()
+        # read from clipboard
+        p = Popen(['pbpaste'], stdout=PIPE, stderr=PIPE)
+        out, _err = p.communicate()
+        log = out.decode('utf-8')  # bytes -> str
+
     # print(log)
     data = parse_log(log)
     print(data)
