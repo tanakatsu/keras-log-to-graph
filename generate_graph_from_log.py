@@ -25,19 +25,19 @@ def parse_log(logtext):
                 m_val_loss = re.search(" val_loss: ([\d\.]+)", log)
                 m_val_acc = re.search(" val_acc: ([\d\.]+)", log)
                 if m_loss:
-                    loss.append(m_loss.group(1))
+                    loss.append(float(m_loss.group(1)))
                 else:
                     loss.append(None)
                 if m_acc:
-                    acc.append(m_acc.group(1))
+                    acc.append(float(m_acc.group(1)))
                 else:
                     acc.append(None)
                 if m_val_loss:
-                    val_loss.append(m_val_loss.group(1))
+                    val_loss.append(float(m_val_loss.group(1)))
                 else:
                     val_loss.append(None)
                 if m_val_acc:
-                    val_acc.append(m_val_acc.group(1))
+                    val_acc.append(float(m_val_acc.group(1)))
                 else:
                     val_acc.append(None)
     data = {}
