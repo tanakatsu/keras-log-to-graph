@@ -36,7 +36,7 @@ A tiny script for visualizing loss and accuracy from Keras training output text.
 
 For Mac OSX, you can read data from clipboard.
 
-1. Copy log text into clibpard.
+1. Copy log text into clipboard.
 
 	Sample log text: 
 	
