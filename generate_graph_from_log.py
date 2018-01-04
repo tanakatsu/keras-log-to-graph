@@ -53,6 +53,7 @@ def parse_log(logtext):
 def main():
     parser = ArgumentParser()
     parser.add_argument('--output', '-o', action='store', type=str, help='output filename')
+    parser.add_argument('--n_epoch', '-n', action='store', type=int, help='number of epochs to plot')
     parser.add_argument('file', nargs='?', action='store', type=str, help='input filename')
     args = parser.parse_args()
 
@@ -67,10 +68,18 @@ def main():
 
     # print(log)
     data = parse_log(log)
-    print(data)
 
     if len(data['epoch']) == 0:
         return
+
+    if args.n_epoch:
+        data['epoch'] = data['epoch'][:args.n_epoch]
+        data['loss'] = data['loss'][:args.n_epoch]
+        data['acc'] = data['acc'][:args.n_epoch]
+        data['val_loss'] = data['val_loss'][:args.n_epoch]
+        data['val_acc'] = data['val_acc'][:args.n_epoch]
+
+    print(data)
 
     # Plot training loss
     plt.subplot(2, 2, 1)

@@ -53,3 +53,7 @@ For Mac OSX, you can read data from clipboard.
 	```
 	
 1. Then, run script. `$ python generate_graph_from_log.py [-o output_filename]`
+
+#### Options
+
+- `--n_epoch`, `-n`: number of epochs to plot
