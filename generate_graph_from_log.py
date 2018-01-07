@@ -102,7 +102,7 @@ def main():
     plt.title("validation loss")
     if len(data['epoch']) < 4:
         plt.xticks(range(min(data['epoch']), max(data['epoch']) + 1))
-    plt.ylim(0, max(data['loss']) + 0.1)
+    plt.ylim(0, max(data['val_loss']) + 0.1)
     plt.plot(data['epoch'], data['val_loss'])
 
     # Plot validation accuracy
